@@ -1,0 +1,8 @@
+{
+  "id": "paseo-openspec",
+  "name": "OpenSpec",
+  "description": "在工作区面板查看 OpenSpec 变更列表与提案、设计、任务、规格文档。",
+  "requirements": {
+    "paseo": ">=0.8.0"
+  }
+}

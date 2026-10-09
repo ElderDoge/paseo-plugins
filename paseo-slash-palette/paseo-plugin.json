@@ -1,0 +1,8 @@
+{
+  "id": "paseo-slash-palette",
+  "name": "斜杠命令面板",
+  "description": "在输入框旁加入斜杠命令面板，支持搜索、参数填写、描述本地化与固定常用命令。",
+  "requirements": {
+    "paseo": ">=0.8.0"
+  }
+}

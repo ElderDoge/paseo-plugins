@@ -1,0 +1,8 @@
+{
+  "id": "paseo-omp-hud",
+  "name": "omp 实时状态",
+  "description": "在 omp agent 的药丸上实时显示当前工具调用、生成速度与待办进度。",
+  "requirements": {
+    "paseo": ">=0.8.0"
+  }
+}

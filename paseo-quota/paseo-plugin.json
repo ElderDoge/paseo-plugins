@@ -1,0 +1,8 @@
+{
+  "id": "paseo-quota",
+  "name": "订阅额度",
+  "description": "用本插件里填写的密钥，实时读取 ClinePass、OpenCode Go 与 Command Code 的订阅额度。",
+  "requirements": {
+    "paseo": "^0.11.0"
+  }
+}
