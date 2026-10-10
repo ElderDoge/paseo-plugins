@@ -8,7 +8,7 @@
 - 变更数据来自守护进程在**工作区目录**下执行 `openspec-cn list --json`（找不到时回退到 `openspec`），面板每 15 秒视为新鲜，可随时点「刷新」重新拉取。
 - 选中变更后，用标签页阅读四类文档：`proposal.md`（提案）、`design.md`（设计）、`tasks.md`（任务），以及该变更 `specs/<规格 id>/spec.md` 下的每个规格；尚未创建的文件标签显示为「<名称>（尚未创建）」并置灰不可点。
 - 文档正文由 `openspec-cn list --json` 返回的项目根目录下的 `openspec/` 读取，以 Markdown 渲染（标题、列表与任务复选框、表格、代码块、引用、行内代码／粗体／斜体／链接）。
-- 变更详情头部提供复制菜单，可一键复制变更 id 或 `/opsx:apply <id>`、`/opsx:archive <id>`、`/opsx:verify <id>` 三个斜杠命令，复制结果通过 toast 提示。
+- 变更详情头部提供复制菜单，可一键复制变更 id 或 `/opsx-apply <id>`、`/opsx-archive <id>`、`/opsx-verify <id>` 三个斜杠命令，复制结果通过 toast 提示。
 - 面板同时注册在工作区侧栏与 Explorer 中；窄布局下一次只显示一列，可用「变更／文档」按钮在列表与文档之间切换（宽布局下按钮为「隐藏列表／显示列表」）。
 
 ## 安装

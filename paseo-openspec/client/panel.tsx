@@ -73,9 +73,9 @@ interface CopyTarget {
 /** Rows of the copy menu: the bare id, then the commands that take one. */
 const COPY_TARGETS: readonly CopyTarget[] = [
   { icon: "ClipboardCopy", command: null },
-  { icon: "Play", command: "/opsx:apply" },
-  { icon: "Archive", command: "/opsx:archive" },
-  { icon: "ShieldCheck", command: "/opsx:verify" },
+  { icon: "Play", command: "/opsx-apply" },
+  { icon: "Archive", command: "/opsx-archive" },
+  { icon: "ShieldCheck", command: "/opsx-verify" },
 ];
 
 interface PanelStyles {
