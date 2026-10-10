@@ -74,8 +74,9 @@ interface CopyTarget {
 const COPY_TARGETS: readonly CopyTarget[] = [
   { icon: "ClipboardCopy", command: null },
   { icon: "Play", command: "/opsx-apply" },
-  { icon: "Archive", command: "/opsx-archive" },
+  { icon: "SkipForward", command: "/opsx-continue" },
   { icon: "ShieldCheck", command: "/opsx-verify" },
+  { icon: "Archive", command: "/opsx-archive" },
 ];
 
 interface PanelStyles {
