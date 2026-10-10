@@ -212,8 +212,25 @@ function createStyles(theme: PanelTheme, narrow: boolean, width: number): PanelS
       // The copy menu hangs below this header, over the tabs and the document.
       zIndex: 1,
     },
-    detailHeadRow: { flexDirection: "row", alignItems: "center", flexWrap: "wrap", gap: 8 },
-    changeIdGroup: { flexDirection: "row", alignItems: "center", flexShrink: 1, minWidth: 0, gap: 2 },
+    // Kept above the summary/meta rows so the copy menu can overlay them.
+    detailHeadRow: {
+      position: "relative",
+      flexDirection: "row",
+      alignItems: "center",
+      flexWrap: "wrap",
+      gap: 8,
+      zIndex: 2,
+    },
+    // The copy menu is anchored to this group, so it opens right under the id and its button.
+    changeIdGroup: {
+      position: "relative",
+      flexDirection: "row",
+      alignItems: "center",
+      flexShrink: 1,
+      minWidth: 0,
+      gap: 2,
+      zIndex: 2,
+    },
     // A definite size keeps the tap target square next to a long change id.
     copyButton: {
       flexShrink: 0,
@@ -226,7 +243,7 @@ function createStyles(theme: PanelTheme, narrow: boolean, width: number): PanelS
     copyMenu: {
       position: "absolute",
       top: "100%",
-      right: narrow ? 12 : 16,
+      left: 0,
       marginTop: 4,
       zIndex: 2,
       width: menuWidth,
@@ -406,6 +423,33 @@ function ChangeHeader({ change, styles, theme }: ChangeHeaderProps) {
               color={menuOpen ? theme.colors.accent : theme.colors.foregroundMuted}
             />
           </Pressable>
+          {menuOpen ? (
+            <View style={styles.copyMenu}>
+              {COPY_TARGETS.map((target) => {
+                const text = target.command === null ? change.id : `${target.command} ${change.id}`;
+                return (
+                  <Pressable
+                    key={text}
+                    accessibilityRole="button"
+                    accessibilityLabel={`复制 ${text}`}
+                    onPress={() => {
+                      setMenuOpen(false);
+                      void copy(text);
+                    }}
+                    style={({ pressed }) => [
+                      styles.copyMenuItem,
+                      pressed ? styles.copyMenuItemPressed : null,
+                    ]}
+                  >
+                    <Icon name={target.icon} size={12} color={theme.colors.foregroundMuted} />
+                    <Text numberOfLines={1} style={styles.copyMenuText}>
+                      {text}
+                    </Text>
+                  </Pressable>
+                );
+              })}
+            </View>
+          ) : null}
         </View>
         <Text style={styles.changeStatus}>{STATUS_LABEL[change.status]}</Text>
       </View>
@@ -422,33 +466,6 @@ function ChangeHeader({ change, styles, theme }: ChangeHeaderProps) {
         </Text>
         <Text style={styles.changeProgress}>{formatRelativeTime(change.lastModified)}</Text>
       </View>
-      {menuOpen ? (
-        <View style={styles.copyMenu}>
-          {COPY_TARGETS.map((target) => {
-            const text = target.command === null ? change.id : `${target.command} ${change.id}`;
-            return (
-              <Pressable
-                key={text}
-                accessibilityRole="button"
-                accessibilityLabel={`复制 ${text}`}
-                onPress={() => {
-                  setMenuOpen(false);
-                  void copy(text);
-                }}
-                style={({ pressed }) => [
-                  styles.copyMenuItem,
-                  pressed ? styles.copyMenuItemPressed : null,
-                ]}
-              >
-                <Icon name={target.icon} size={12} color={theme.colors.foregroundMuted} />
-                <Text numberOfLines={1} style={styles.copyMenuText}>
-                  {text}
-                </Text>
-              </Pressable>
-            );
-          })}
-        </View>
-      ) : null}
     </View>
   );
 }
